@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
 use Speelpenning\PostcodeNl\Exceptions\AccountSuspended;
 use Speelpenning\PostcodeNl\Exceptions\AddressNotFound;
@@ -12,8 +13,8 @@ class AddressLookupTest extends TestCase
     {
         $auth = config('postcode-nl.requestOptions.auth');
 
-        $this->assertNotEmpty(array_get($auth, 0));
-        $this->assertNotEmpty(array_get($auth, 1));
+        $this->assertNotEmpty(Arr::get($auth, 0));
+        $this->assertNotEmpty(Arr::get($auth, 1));
     }
 
     public function testInvalidCredentialsThrowUnauthorized()

@@ -2,6 +2,7 @@
 
 namespace Speelpenning\PostcodeNl;
 
+use Illuminate\Support\Arr;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Speelpenning\PostcodeNl\Http\PostcodeNlClient;
@@ -24,7 +25,7 @@ class PostcodeNlServiceProvider extends ServiceProvider
             $this->getPathToConfigFile() => config_path('postcode-nl.php')
         ], 'config');
 
-        if (array_get($this->app['config'], 'postcode-nl.enableRoutes', false) and ! $this->app->routesAreCached()) {
+        if (Arr::get($this->app['config'], 'postcode-nl.enableRoutes', false) and ! $this->app->routesAreCached()) {
             require __DIR__ . '/Http/routes.php';
         }
     }
